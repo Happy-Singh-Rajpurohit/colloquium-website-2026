@@ -1,0 +1,543 @@
+/* ================= BASE ================= */
+:root {
+    --amber-glow: #d97706;
+    --cyber-purple: #842be2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #050505;
+    color: #fef3c7;
+    background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+    min-height: 100vh;
+}
+
+.mono {
+    font-family: 'Space Mono', monospace;
+}
+
+/* ================= SECTION HEADINGS ================= */
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    background: linear-gradient(90deg,
+            #d97706,
+            #fbbf24,
+            #fde68a,
+            #fbbf24,
+            #d97706);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 25px rgba(217, 119, 6, 0.15);
+}
+
+.heading-line {
+    width: 140px;
+    height: 3px;
+    margin: 12px auto 0;
+
+    background: linear-gradient(90deg,
+            transparent,
+            #fbbf24,
+            #d97706,
+            #fbbf24,
+            transparent);
+
+    border-radius: 4px;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(217, 119, 6, 0.15);
+}
+
+.nav-link {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #d4d4d4;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--amber-glow);
+}
+
+.nav-register {
+    background: var(--amber-glow);
+    color: black;
+    padding: 6px 14px;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.nav-register:hover {
+    background: #f59e0b;
+}
+
+/* ================= HERO ================= */
+.society-logo {
+    filter: drop-shadow(0 0 8px rgba(217, 119, 6, 0.4));
+}
+
+/* scanning line */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 2px;
+    background: rgba(217, 119, 6, 0.15);
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 100%;
+    }
+}
+
+/* ================= POWERFUL GLITCH EFFECT ================= */
+
+.glitch {
+    position: relative;
+    font-weight: bold;
+    color: white;
+    animation: glitch-main 1.5s infinite linear alternate;
+}
+
+/* RED / AMBER LAYER */
+.glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -3px 0 var(--amber-glow);
+    top: 0;
+    animation: glitch-top 1s infinite linear alternate-reverse;
+}
+
+/* PURPLE / CYBER LAYER */
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 3px 0 var(--cyber-purple);
+    top: 0;
+    animation: glitch-bottom 5s infinite linear alternate;
+}
+
+/* Main subtle shake */
+@keyframes glitch-main {
+    0% { transform: skew(0deg); }
+    20% { transform: skew(1deg); }
+    40% { transform: skew(-1deg); }
+    60% { transform: skew(0.5deg); }
+    80% { transform: skew(-0.5deg); }
+    100% { transform: skew(0deg); }
+}
+
+/* Top layer movement */
+@keyframes glitch-top {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-3px, -3px); }
+    40% { transform: translate(-3px, 3px); }
+    60% { transform: translate(3px, -3px); }
+    80% { transform: translate(3px, 3px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Bottom layer movement */
+@keyframes glitch-bottom {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(3px, 3px); }
+    40% { transform: translate(3px, -3px); }
+    60% { transform: translate(-3px, 3px); }
+    80% { transform: translate(-3px, -3px); }
+    100% { transform: translate(0, 0); }
+}
+
+
+
+/* timer */
+.timer-unit {
+    background: rgba(217, 119, 6, 0.05);
+    border: 1px solid rgba(217, 119, 6, 0.2);
+    min-width: 70px;
+}
+
+.timer-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: #fbbf24;
+    opacity: 0.8;
+}
+
+/* ================= EVENT CARDS ================= */
+.flip-card {
+    perspective: 1000px;
+    height: 400px;
+}
+
+.flip-card-inner {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    height: 100%;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(217, 119, 6, 0.2);
+    border-radius: 4px;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background: rgba(15, 15, 15, 0.8);
+}
+
+.flip-card-back {
+    background: var(--amber-glow);
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.btn-register {
+    background: black;
+    color: var(--amber-glow);
+    border: 1px solid black;
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    background: transparent;
+    color: black;
+}
+
+/* ================= SPONSORS ================= */
+.sponsor-card {
+    background: #111;
+    padding: 40px;
+    border: 1px solid rgba(217, 119, 6, 0.3);
+    transition: 0.3s;
+}
+
+.sponsor-card:hover {
+    border-color: var(--amber-glow);
+}
+
+
+/* TEAM HEADING */
+.team-heading {
+    text-align: center;
+    margin: 40px auto;
+}
+
+.team-heading h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    font-family: 'Playfair Display', serif;
+
+    background: linear-gradient(90deg, #D4AF37, #FFD700, #8C6A2F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.team-heading .line {
+    width: 12%;
+    max-width: 220px;
+    min-width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #D4AF37, #FFD700, #8C6A2F);
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+
+/* SLIDER CONTAINER */
+.team-slider {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slides {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+    align-items: stretch;
+}
+
+
+/* CARD */
+.card {
+    min-width: calc(100% / 3 - 20px);
+    background: transparent;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+
+    border: 1px solid rgba(217, 119, 6, 0.4);
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.35);
+    transition: all 0.35s ease;
+}
+
+
+/* PREMIUM HOVER EFFECT */
+.card:hover {
+    transform: scale(1.04);
+    border-color: #fbbf24;
+
+    box-shadow:
+        0 0 20px rgba(217, 119, 6, 0.9),
+        0 0 40px rgba(217, 119, 6, 0.5),
+
+        0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+
+/* INFO BOX */
+.card-info {
+    background: #F5E6C8;
+    padding: 12px;
+    border-radius: 0 0 15px 15px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-info h3 {
+    margin: 4px 0;
+    color: #3b2b0a;
+    font-weight: 600;
+}
+
+.card-info p {
+    margin: 0;
+    color: #6b4f1d;
+    font-weight: 400;
+}
+
+
+/* PREMIUM NAV BUTTONS */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 10;
+
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(6px);
+    color: #FFD700;
+
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+
+    transition: all 0.3s ease;
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+.prev:hover,
+.next:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    transform: translateY(-50%) scale(1.15);
+
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+/* ================= CONTACT ================= */
+.icon-circle {
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: 0.3s;
+}
+
+.icon-circle:hover {
+    border-color: var(--amber-glow);
+    color: var(--amber-glow);
+    transform: scale(1.1);
+}
+
+.contact-title {
+    font-size: 22px;
+    letter-spacing: 0.35em;
+    color: var(--amber-glow);
+}
+
+.contact-footer {
+    color: var(--amber-glow);
+}
+
+.slides {
+    padding: 10px;
+}
+
+/* ================= TEAM SECTION ORANGE THEME ================= */
+
+#team {
+    background: radial-gradient(circle at center,
+            rgba(217, 119, 6, 0.08),
+            transparent 70%);
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    /* Navbar spacing */
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    /* Section Headings */
+    .section-heading h2 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    /* Hero Title */
+    .glitch {
+        font-size: 48px !important;
+    }
+
+    /* Timer */
+    .timer-unit {
+        min-width: 60px;
+        padding: 8px;
+    }
+
+    .timer-unit div {
+        font-size: 18px;
+    }
+
+    /* Event Cards */
+    .flip-card {
+        height: 300px;
+    }
+
+    /* Sponsor Grid */
+    #sponsors .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Team Cards */
+    .card {
+        min-width: 85%;
+        height: auto;
+    }
+    .transparent-img:hover {
+  opacity: 1.0; /* Fully opaque on hover */
+  transition: opacity 0.5s; /* Smooth transition effect */
+}
+
+    .card img {
+        height: 200px;
+    }
+
+    /* Slider buttons smaller */
+    .prev,
+    .next {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    /* Contact icons smaller */
+    .icon-circle {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+    .glitch {
+        font-size: 36px !important;
+    }
+
+    .section-heading h2 {
+        font-size: 22px;
+    }
+
+    #sponsors .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flip-card {
+        height: 260px;
+    }
+
+}

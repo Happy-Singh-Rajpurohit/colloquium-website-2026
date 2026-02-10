@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ISTE | COLLOQUIUM</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Space+Mono&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="overflow-x-hidden pb-20">
+  <!-- NAVBAR -->
+  <nav class="navbar px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <img src="images/logo2.png" class="w-40 h-90 md:w-16 md:h-16
+
+         object-contain society-logo" />
+      <!-- <span class="mono text-s tracking-[0.3em] text-white">ISTE</span> -->
+    </div>
+    <div class="hidden md:flex items-center gap-8 mono">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#events" class="nav-link">Events</a>
+      <a href="#sponsors" class="nav-link">Sponsors</a>
+      <a href="#team" class="nav-link">Our Team</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#register" class="nav-register">Register</a>
+    </div>
+  </nav>
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-track">
+      <span>2026</span>
+      <span>2025</span>
+      <span>2024</span>
+      <span>2023</span>
+      <span>2022</span>
+      <span>2021</span>
+      <span>2020</span>
+      <span>2019</span>
+      <span>2018</span>
+      <span>2017</span>
+      <span class="active">2016</span>
+
+      <!-- duplicate for smooth loop -->
+      <span>2026</span>
+      <span>2025</span>
+      <span>2024</span>
+      <span>2023</span>
+      <span>2022</span>
+      <span>2021</span>
+      <span>2020</span>
+      <span>2019</span>
+      <span>2018</span>
+      <span>2017</span>
+      <span class="active">2016</span>
+    </div>
+  </div>
+
+
+  <!-- HERO -->
+  <header id="home" class="min-h-[60vh] flex flex-col items-center justify-center text-center p-6 mt-28">
+    <!--<img src="logo.png" class="society-logo w-32 h-32 md:w-44 md:h-44 mb-6" /-->
+
+    <p class="mono text-amber-600 tracking-[0.4em] uppercase text-[10px] mb-2 font-bold">
+      presents
+    </p>
+
+    <h1 class="glitch text-6xl md:text-9xl font-bold mb-4 tracking-tighter" data-text="COLLOQUIUM">
+      COLLOQUIUM
+    </h1>
+
+    <div class="flex gap-4 justify-center mt-6 mb-8 flex-wrap">
+      <div class="timer-unit p-3 rounded text-center">
+        <div id="days" class="text-2xl font-bold text-white">00</div>
+        <span class="timer-label mono">DAYS</span>
+      </div>
+
+      <div class="timer-unit p-3 rounded text-center">
+        <div id="hours" class="text-2xl font-bold text-white">00</div>
+        <span class="timer-label mono">HOURS</span>
+      </div>
+
+      <div class="timer-unit p-3 rounded text-center">
+        <div id="minutes" class="text-2xl font-bold text-white">00</div>
+        <span class="timer-label mono">MIN</span>
+      </div>
+
+      <div class="timer-unit p-3 rounded text-center">
+        <div id="seconds" class="text-2xl font-bold text-white">00</div>
+        <span class="timer-label mono">SEC</span>
+      </div>
+    </div>
+  </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <!-- EVENTS -->
+  <section id="events" class="px-6 max-w-7xl mx-auto py-20">
+    <div class="section-heading">
+      <h2>EVENTS</h2>
+      <div class="heading-line"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front p-8 flex items-center justify-center">
+            <h3 class="mono text-4xl font-bold text-white uppercase">
+              Webwarp
+            </h3>
+          </div>
+          <div class="flip-card-back p-8 flex items-center justify-center">
+            <button class="btn-register w-full py-4 mono uppercase">
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front p-8 flex items-center justify-center">
+            <h3 class="mono text-4xl font-bold text-white uppercase">
+              Kaggle Playhouse
+            </h3>
+          </div>
+          <div class="flip-card-back p-8 flex items-center justify-center">
+            <button class="btn-register w-full py-4 mono uppercase">
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front p-8 flex items-center justify-center">
+            <h3 class="mono text-4xl font-bold text-white uppercase">
+              Cryptix
+            </h3>
+          </div>
+          <div class="flip-card-back p-8 flex items-center justify-center">
+            <button class="btn-register w-full py-4 mono uppercase">
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section id="sponsors" class="py-20 px-6 text-center">
+    <div class="section-heading">
+      <h2>OUR SPONSORS</h2>
+      <div class="heading-line"></div>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      <div class="sponsor-card">
+        <img src="HELL.png" alt="HELL" class="sponsor-logo">
+      </div>
+
+      <div class="sponsor-card">
+        <img src="sponsor2.png" alt="Sponsor 2" class="sponsor-logo">
+      </div>
+
+      <div class="sponsor-card">
+        <img src="sponsor3.png" alt="Sponsor 3" class="sponsor-logo">
+      </div>
+
+      <div class="sponsor-card">
+        <img src="sponsor4.png" alt="Sponsor 4" class="sponsor-logo">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="py-20">
+    <div class="section-heading">
+      <h2>OUR TEAM</h2>
+      <div class="heading-line"></div>
+    </div>
+
+    <div class="team-slider">
+      <button class="prev">❮</button>
+      <div class="slider-container">
+        <div class="slides" id="slides"></div>
+      </div>
+      <button class="next">❯</button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 text-center">
+    <div class="section-heading">
+      <h2>CONTACT</h2>
+      <div class="heading-line"></div>
+    </div>
+
+    <div class="flex justify-center gap-10 mb-12">
+      <a href="https://www.instagram.com/iste_tiet/" class="icon-circle"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/company/iste-thapar/?originalSubdomain=in" class="icon-circle"><i
+          class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/ISTE.Thapar/" class="icon-circle"><i class="fab fa-facebook-f"></i></a>
+    </div>
+
+    <p class="contact-footer mono tracking-wide">
+      ©COLLOQUIUM 2026 ALL RIGHTS RESERVED | Designed With
+      <span class="text-red-500">❤</span> by ISTE
+    </p>
+  </section>
+
+  <footer class="p-10 text-center border-t border-white/5">
+    <p class="mono text-zinc-600 text-[9px] uppercase tracking-[0.5em]">
+      Transmission End // Colloquium
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
