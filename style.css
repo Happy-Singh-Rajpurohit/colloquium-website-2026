@@ -711,7 +711,7 @@ footer {
 
     /* Navbar spacing */
     .navbar {
-        padding: 12px 20px;
+        padding: 5px 20px;
     }
 
     /* Section Headings */
@@ -738,8 +738,8 @@ footer {
 
     /* Event Cards */
     .flip-card {
-        height: 380px;
-        /* Slightly smaller on mobile but consistent */
+        height: 450px;
+        /* Restored to full height to prevent overflow */
     }
 
     /* Sponsor Grid */
@@ -810,7 +810,7 @@ footer {
     }
 
     .flip-card {
-        height: 260px;
+        height: 450px;
     }
 
 }
