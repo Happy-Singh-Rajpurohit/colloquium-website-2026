@@ -40,6 +40,7 @@ body {
             #fbbf24,
             #d97706);
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -97,6 +98,10 @@ body {
 }
 
 /* ================= HERO ================= */
+#mobile-menu.active {
+    transform: translateX(0);
+}
+
 .society-logo {
     filter: drop-shadow(0 0 8px rgba(217, 119, 6, 0.4));
 }
@@ -121,63 +126,229 @@ body::before {
     }
 }
 
-/* ================= POWERFUL GLITCH EFFECT ================= */
-
-.glitch {
-    position: relative;
+/* ================= HERO BUTTON ================= */
+.btn-hero-register {
+    display: inline-block;
+    padding: 12px 30px;
+    margin: 10px 0 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: white;
-    animation: glitch-main 1.5s infinite linear alternate;
+    color: var(--amber-glow);
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--amber-glow);
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.2);
+    position: relative;
+    z-index: 10;
 }
 
-/* RED / AMBER LAYER */
-.glitch::before {
-    content: attr(data-text);
+.btn-hero-register:hover {
+    background: var(--amber-glow);
+    color: #000;
+    box-shadow: 0 0 20px rgba(217, 119, 6, 0.6);
+    transform: scale(1.05);
+}
+
+/* ================= HERO BACKGROUND ANIMATION (Clockwork) ================= */
+#hero-bg-animation {
     position: absolute;
-    left: 2px;
-    text-shadow: -3px 0 var(--amber-glow);
     top: 0;
-    animation: glitch-top 1s infinite linear alternate-reverse;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* PURPLE / CYBER LAYER */
-.glitch::after {
-    content: attr(data-text);
+.clock-circle {
     position: absolute;
-    left: -2px;
-    text-shadow: 3px 0 var(--cyber-purple);
-    top: 0;
-    animation: glitch-bottom 5s infinite linear alternate;
+    border-radius: 50%;
+    border: 1px dashed rgba(217, 119, 6, 0.15);
+    box-shadow: 0 0 20px rgba(217, 119, 6, 0.05);
 }
 
-/* Main subtle shake */
+.circle-1 {
+    width: 400px;
+    height: 400px;
+    animation: rotate-counter 60s linear infinite;
+    border-width: 2px;
+}
+
+.circle-2 {
+    width: 600px;
+    height: 600px;
+    animation: rotate-clockwise 90s linear infinite;
+    border-width: 1px;
+    opacity: 0.7;
+}
+
+.circle-3 {
+    width: 800px;
+    height: 800px;
+    animation: rotate-counter 120s linear infinite;
+    border: 1px dotted rgba(217, 119, 6, 0.1);
+    opacity: 0.5;
+}
+
+@keyframes rotate-clockwise {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-counter {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Clock Hands */
+.clock-center {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--amber-glow);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px var(--amber-glow);
+}
+
+.clock-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    background: var(--amber-glow);
+    border-radius: 4px;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(217, 119, 6, 0.5);
+    opacity: 0.5;
+}
+
+.hour {
+    width: 6px;
+    height: 120px;
+    margin-left: -3px;
+    /* Center alignment */
+    /* background: linear-gradient(to top, var(--amber-glow), transparent); */
+    background: rgba(217, 119, 6, 0.8);
+    animation: rotate-counter 60s linear infinite;
+    opacity: 0.4;
+}
+
+.minute {
+    width: 4px;
+    height: 180px;
+    margin-left: -2px;
+    background: rgba(217, 119, 6, 0.6);
+    animation: rotate-counter 30s linear infinite;
+    opacity: 0.4;
+}
+
+.second {
+    width: 2px;
+    height: 220px;
+    margin-left: -1px;
+    background: #ef4444;
+    /* Red tint for second hand */
+    animation: rotate-counter 10s linear infinite;
+    opacity: 0.4;
+}
+
 @keyframes glitch-main {
-    0% { transform: skew(0deg); }
-    20% { transform: skew(1deg); }
-    40% { transform: skew(-1deg); }
-    60% { transform: skew(0.5deg); }
-    80% { transform: skew(-0.5deg); }
-    100% { transform: skew(0deg); }
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(1deg);
+    }
+
+    40% {
+        transform: skew(-1deg);
+    }
+
+    60% {
+        transform: skew(0.5deg);
+    }
+
+    80% {
+        transform: skew(-0.5deg);
+    }
+
+    100% {
+        transform: skew(0deg);
+    }
 }
 
 /* Top layer movement */
 @keyframes glitch-top {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-3px, -3px); }
-    40% { transform: translate(-3px, 3px); }
-    60% { transform: translate(3px, -3px); }
-    80% { transform: translate(3px, 3px); }
-    100% { transform: translate(0, 0); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-3px, -3px);
+    }
+
+    40% {
+        transform: translate(-3px, 3px);
+    }
+
+    60% {
+        transform: translate(3px, -3px);
+    }
+
+    80% {
+        transform: translate(3px, 3px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 /* Bottom layer movement */
 @keyframes glitch-bottom {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(3px, 3px); }
-    40% { transform: translate(3px, -3px); }
-    60% { transform: translate(-3px, 3px); }
-    80% { transform: translate(-3px, -3px); }
-    100% { transform: translate(0, 0); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(3px, 3px);
+    }
+
+    40% {
+        transform: translate(3px, -3px);
+    }
+
+    60% {
+        transform: translate(-3px, 3px);
+    }
+
+    80% {
+        transform: translate(-3px, -3px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 
@@ -196,52 +367,82 @@ body::before {
     opacity: 0.8;
 }
 
-/* ================= EVENT CARDS ================= */
+/* ================= EVENT CARDS (PREMIUM) ================= */
 .flip-card {
     perspective: 1000px;
-    height: 400px;
+    height: 450px;
 }
 
 .flip-card-inner {
     transition: transform 0.8s;
     transform-style: preserve-3d;
     height: 100%;
+    box-shadow: 0 0 15px rgba(217, 119, 6, 0.1);
+    border-radius: 4px;
 }
 
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(540deg);
+    /* 1.5 spins */
+    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .flip-card-front,
 .flip-card-back {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: 1px solid rgba(217, 119, 6, 0.2);
     border-radius: 4px;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    overflow: hidden;
+    /* Prevent content spill */
 }
 
 .flip-card-front {
-    background: rgba(15, 15, 15, 0.8);
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98));
+    border: 1px solid rgba(217, 119, 6, 0.3);
+    position: relative;
+    /* Wait, this should be absolute as per the rule above? No, the rule above selects both. Let's check logic. */
+    /* actually, if strict absolute is needed, we should remove relative here if it conflicts, or just let the cascading handle it. 
+       The previous rule sets position: absolute. This specific rule sets position: relative. 
+       Relative on front face might be why back face (absolute) was pushing down or behaving oddly if flexbox was involved? 
+       Wait, if front is relative, it takes up space. If back is absolute, it overlays. 
+       If INNER is relative, and BOTH faces are absolute, then the container has 0 height unless height is set.
+       .flip-card has height: 450px. .flip-card-inner has height: 100%. So container has height.
+       So both should be absolute.
+       I will REMOVE position: relative from .flip-card-front to enforce absolute.
+    */
+    z-index: 2;
+}
+
+/* Tech/Cyber border effect */
+.flip-card-front::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--amber-glow);
+    box-shadow: 0 0 10px var(--amber-glow);
 }
 
 .flip-card-back {
     background: var(--amber-glow);
     color: black;
     transform: rotateY(180deg);
-}
-
-.btn-register {
-    background: black;
-    color: var(--amber-glow);
-    border: 1px solid black;
-    transition: 0.3s;
-}
-
-.btn-register:hover {
-    background: transparent;
-    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid var(--amber-glow);
 }
 
 /* ================= SPONSORS ================= */
@@ -254,6 +455,7 @@ body::before {
 
 .sponsor-card:hover {
     border-color: var(--amber-glow);
+    box-shadow: 0 0 15px rgba(217, 119, 6, 0.3);
 }
 
 
@@ -271,6 +473,7 @@ body::before {
     font-family: 'Playfair Display', serif;
 
     background: linear-gradient(90deg, #D4AF37, #FFD700, #8C6A2F);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -292,81 +495,126 @@ body::before {
     max-width: 1000px;
     margin: auto;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; Removed to allow shadow/glow to show, buttons overlap */
 }
 
 .slider-container {
     overflow: hidden;
     width: 100%;
+    padding: 20px 0;
+    /* Add padding for hover effects */
 }
 
-.slides {
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+    .slider-container {
+        padding: 20px 50px;
+        /* Increased padding to center cards with detail */
+    }
+
+    .card {
+        min-width: 100%;
+        margin-right: 0;
+    }
+
+    .card img {
+        height: 280px;
+        /* Slightly taller */
+        object-position: center 20%;
+        /* Focus on faces */
+        margin-bottom: 2rem;
+    }
+}
+
+#slides {
     display: flex;
     gap: 20px;
     transition: transform 0.5s ease-in-out;
-    align-items: stretch;
+    align-items: center;
+    /* Vertically center cards */
 }
 
 
 /* CARD */
+/* CARD */
 .card {
-    min-width: calc(100% / 3 - 20px);
-    background: transparent;
+    min-width: 100%;
+    /* Mobile: 1 card per view */
+    /* background: rgba(10, 10, 10, 0.6); */
+    background: #0a0a0a;
     border-radius: 15px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    height: 360px;
-
-    border: 1px solid rgba(217, 119, 6, 0.4);
-    box-shadow: 0 0 10px rgba(217, 119, 6, 0.35);
+    height: 450px;
+    border: 1px solid rgba(217, 119, 6, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.35s ease;
+}
+
+@media (min-width: 768px) {
+    .card {
+        min-width: calc((100% / 3) - 14px);
+        /* Desktop: 3 cards. Gap is 20px. 3*w + 2*20 = 100% approx? Flex gap handles spacing. */
+        /* Actually, if gap is 20px, we have 2 gaps for 3 items. (100% - 40px) / 3 */
+    }
 }
 
 
 /* PREMIUM HOVER EFFECT */
 .card:hover {
-    transform: scale(1.04);
+    transform: translateY(-5px) scale(1.02);
     border-color: #fbbf24;
 
     box-shadow:
-        0 0 20px rgba(217, 119, 6, 0.9),
-        0 0 40px rgba(217, 119, 6, 0.5),
-
-        0 15px 35px rgba(0, 0, 0, 0.5);
+        0 10px 25px rgba(217, 119, 6, 0.2),
+        0 0 15px rgba(217, 119, 6, 0.1);
 }
 
 
 /* IMAGE */
 .card img {
     width: 100%;
-    height: 260px;
+    height: 320px;
+    /* Definitive upper part */
     object-fit: cover;
+    object-position: top center;
     border-radius: 12px 12px 0 0;
+    margin: 0;
+    display: block;
 }
 
 
 /* INFO BOX */
 .card-info {
-    background: #F5E6C8;
-    padding: 12px;
+    background: #111;
+    /* Solid background, no transparency overlap */
+    padding: 15px;
     border-radius: 0 0 15px 15px;
-    height: 90px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-top: 2px solid var(--amber-glow);
+    /* Separator */
+    position: relative;
+    z-index: 2;
 }
 
 .card-info h3 {
     margin: 4px 0;
-    color: #3b2b0a;
+    color: #fde68a;
     font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
 }
 
 .card-info p {
     margin: 0;
-    color: #6b4f1d;
+    color: #d1d5db;
     font-weight: 400;
+    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
 }
 
 
@@ -383,75 +631,80 @@ body::before {
     font-size: 20px;
     z-index: 10;
 
-    background: rgba(20, 20, 20, 0.6);
+    background: rgba(5, 5, 5, 0.8);
     backdrop-filter: blur(6px);
     color: #FFD700;
 
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
     transition: all 0.3s ease;
 }
 
 .prev {
-    left: 15px;
+    left: -20px;
+    /* Pull out of frame slightly on desktop */
 }
 
 .next {
-    right: 15px;
+    right: -20px;
 }
 
 .prev:hover,
 .next:hover {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    transform: translateY(-50%) scale(1.15);
-
-    box-shadow:
-        0 0 15px rgba(255, 215, 0, 0.8),
-        0 0 30px rgba(255, 215, 0, 0.6);
+    background: var(--amber-glow);
+    color: black;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px var(--amber-glow);
 }
 
 /* ================= CONTACT ================= */
 .icon-circle {
-    width: 58px;
-    height: 58px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #aaa;
     transition: 0.3s;
 }
 
 .icon-circle:hover {
     border-color: var(--amber-glow);
     color: var(--amber-glow);
+    background: rgba(217, 119, 6, 0.1);
     transform: scale(1.1);
 }
 
 .contact-title {
-    font-size: 22px;
-    letter-spacing: 0.35em;
+    font-size: 18px;
+    letter-spacing: 0.2em;
     color: var(--amber-glow);
+    margin-bottom: 10px;
 }
 
 .contact-footer {
-    color: var(--amber-glow);
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
 }
 
-.slides {
-    padding: 10px;
+footer {
+    padding-bottom: 20px;
 }
 
 /* ================= TEAM SECTION ORANGE THEME ================= */
 
 #team {
     background: radial-gradient(circle at center,
-            rgba(217, 119, 6, 0.08),
-            transparent 70%);
+            rgba(217, 119, 6, 0.05),
+            transparent 60%);
+    padding-bottom: 60px;
 }
+
 /* ================= MOBILE RESPONSIVE ================= */
 
 @media (max-width: 768px) {
@@ -468,8 +721,9 @@ body::before {
     }
 
     /* Hero Title */
-    .glitch {
-        font-size: 48px !important;
+    .hero-title-image {
+        height: 100px;
+        /* Smaller on mobile */
     }
 
     /* Timer */
@@ -484,7 +738,8 @@ body::before {
 
     /* Event Cards */
     .flip-card {
-        height: 300px;
+        height: 380px;
+        /* Slightly smaller on mobile but consistent */
     }
 
     /* Sponsor Grid */
@@ -493,17 +748,26 @@ body::before {
     }
 
     /* Team Cards */
-    .card {
-        min-width: 85%;
-        height: auto;
+    .team-slider {
+        padding: 0 10px;
+        /* Prevent edge touching */
     }
-    .transparent-img:hover {
-  opacity: 1.0; /* Fully opaque on hover */
-  transition: opacity 0.5s; /* Smooth transition effect */
-}
+
+    .card {
+        min-width: 100%;
+        /* Full width for mobile slider */
+        margin-right: 0;
+        /* No gap needed if 100% width, managed by slider gap usually */
+        height: 420px;
+    }
 
     .card img {
-        height: 200px;
+        height: 280px;
+    }
+
+    .slides {
+        gap: 0;
+        /* Reset gap for mobile if using 100% width logic, or keep small */
     }
 
     /* Slider buttons smaller */
@@ -511,14 +775,23 @@ body::before {
     .next {
         padding: 8px 12px;
         font-size: 16px;
+        background: rgba(0, 0, 0, 0.7);
+        left: 10px;
+        /* Reset position for mobile inside container */
+    }
+
+    .next {
+        right: 10px;
+        left: auto;
     }
 
     /* Contact icons smaller */
     .icon-circle {
-        width: 48px;
-        height: 48px;
+        width: 36px;
+        height: 36px;
     }
 }
+
 
 
 /* Extra small phones */
@@ -540,4 +813,36 @@ body::before {
         height: 260px;
     }
 
+}
+
+/* ================= HOURGLASS REVEAL ================= */
+.hourglass-reveal {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.hourglass-reveal.in-view {
+    opacity: 1;
+    animation: hourglassOpen 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hourglassOpen {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 50% 50%, 100% 100%, 0 100%);
+        transform: scale(0.95);
+        filter: blur(5px);
+    }
+
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0 50%);
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ================= TEAM (Reset Marquee) ================= */
+/* Ensure buttons are visible */
+.prev,
+.next {
+    display: block !important;
 }
