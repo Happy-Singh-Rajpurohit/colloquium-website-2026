@@ -149,17 +149,17 @@ if (slidesContainer) {
 
 
 /* ================= EVENT CARDS (MOBILE CLICK) ================= */
-const flipCards = document.querySelectorAll('.flip-card');
+const curtainCards = document.querySelectorAll('.curtain-card');
 
-flipCards.forEach(card => {
+curtainCards.forEach(card => {
     card.addEventListener('click', () => {
         // Toggle this card
-        card.classList.toggle('flipped');
+        card.classList.toggle('active');
 
         // Optional: Close others (Accordion style)
-        flipCards.forEach(otherCard => {
+        curtainCards.forEach(otherCard => {
             if (otherCard !== card) {
-                otherCard.classList.remove('flipped');
+                otherCard.classList.remove('active');
             }
         });
     });

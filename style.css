@@ -367,82 +367,184 @@ body::before {
     opacity: 0.8;
 }
 
-/* ================= EVENT CARDS (PREMIUM) ================= */
-.flip-card {
-    perspective: 1000px;
-    height: 450px;
-}
-
-.flip-card-inner {
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    height: 100%;
-    box-shadow: 0 0 15px rgba(217, 119, 6, 0.1);
-    border-radius: 4px;
-}
-
-.flip-card:hover .flip-card-inner,
-.flip-card.flipped .flip-card-inner {
-    transform: rotateY(540deg);
-    /* 1.5 spins */
-    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.flip-card-front,
-.flip-card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(217, 119, 6, 0.2);
-    border-radius: 4px;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    overflow: hidden;
-    /* Prevent content spill */
-}
-
-.flip-card-front {
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98));
-    border: 1px solid rgba(217, 119, 6, 0.3);
+/* ================= EVENT CARDS (CURTAIN) ================= */
+.curtain-card {
     position: relative;
-    /* Wait, this should be absolute as per the rule above? No, the rule above selects both. Let's check logic. */
-    /* actually, if strict absolute is needed, we should remove relative here if it conflicts, or just let the cascading handle it. 
-       The previous rule sets position: absolute. This specific rule sets position: relative. 
-       Relative on front face might be why back face (absolute) was pushing down or behaving oddly if flexbox was involved? 
-       Wait, if front is relative, it takes up space. If back is absolute, it overlays. 
-       If INNER is relative, and BOTH faces are absolute, then the container has 0 height unless height is set.
-       .flip-card has height: 450px. .flip-card-inner has height: 100%. So container has height.
-       So both should be absolute.
-       I will REMOVE position: relative from .flip-card-front to enforce absolute.
-    */
-    z-index: 2;
+    height: 450px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(217, 119, 6, 0.1);
+    background: #000;
 }
 
-/* Tech/Cyber border effect */
-.flip-card-front::before {
-    content: '';
+/* Base Content (Back) */
+.curtain-back {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: var(--amber-glow);
-    box-shadow: 0 0 10px var(--amber-glow);
-}
-
-.flip-card-back {
+    height: 100%;
     background: var(--amber-glow);
     color: black;
-    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 2rem;
-    border: 1px solid var(--amber-glow);
+    z-index: 1;
+}
+
+/* Curtain Container (Front Overlay) */
+.curtain-front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    /* Let clicks pass through if needed, but we want hover on parent */
+}
+
+/* Panels */
+.curtain-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    background: #111;
+    /* Fallback */
+    border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.curtain-panel-left {
+    left: 0;
+    transform-origin: left;
+    border-right: none;
+}
+
+.curtain-panel-right {
+    right: 0;
+    transform-origin: right;
+    border-left: none;
+}
+
+/* Panel Content Inner */
+.panel-content {
+    position: absolute;
+    top: 0;
+    width: 200%;
+    /* Double width because panel is 50% */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    /* Remove padding to let image touch edges */
+    background: #111;
+}
+
+/* New Layout: Image Top, Text Bottom */
+.panel-img-container {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    position: relative;
+}
+
+.panel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.panel-text {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.98), rgba(10, 10, 10, 0.99));
+}
+
+/* Adjust inner content position for each panel so they align perfectly */
+.curtain-panel-left .panel-content {
+    left: 0;
+}
+
+.curtain-panel-right .panel-content {
+    right: 0;
+}
+
+/* Neon Divider Line - Lighter */
+.curtain-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    /* Thinner */
+    height: 100%;
+    background: rgba(217, 119, 6, 0.3);
+    /* Much lighter opacity */
+    box-shadow: 0 0 5px rgba(217, 119, 6, 0.2);
+    /* Reduced glow */
+    z-index: 3;
+    opacity: 0.5;
+    /* Lower overall opacity */
+    transition: opacity 0.3s;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+/* Hover Effects */
+.curtain-card:hover .curtain-panel-left,
+.curtain-card.active .curtain-panel-left {
+    transform: translateX(-100%);
+}
+
+.curtain-card:hover .curtain-panel-right,
+.curtain-card.active .curtain-panel-right {
+    transform: translateX(100%);
+}
+
+.curtain-card:hover::after,
+.curtain-card.active::after {
+    opacity: 0;
+}
+
+/* Text Styles for Panels (Ensure they match original) */
+.curtain-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.875rem;
+    /* 3xl */
+    line-height: 2.25rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.curtain-subtitle {
+    color: #e5e7eb;
+    /* gray-200 equivalent */
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.curtain-date {
+    color: var(--amber-glow);
+    font-family: 'Space Mono', monospace;
+    font-size: 1.125rem;
+    /* lg */
 }
 
 /* ================= SPONSORS ================= */
