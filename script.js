@@ -38,7 +38,7 @@ const teamMembers = [
     { img: "images/nishika.jpg", name: "Nishika", role: "Marketing Head" },
     { img: "images/aryan sharma.jpg", name: "Aryan Sharma", role: "Media Head" },
     { img: "images/Geetika.jpeg", name: "Geetika", role: "Media Head" },
-    { img: "images/Manya.jpeg", name: "Manya", role: "Media Head" },
+    { img: "images/manya2.jpeg", name: "Manya", role: "Media Head" },
     { img: "images/mehar.jpg", name: "Mehar", role: "Media Head" },
     { img: "images/vishwas.jpg", name: "Vishwas", role: "Logistics Head" },
     { img: "images/abhishek.jpg", name: "Abhishek", role: "Logistics Head" },
