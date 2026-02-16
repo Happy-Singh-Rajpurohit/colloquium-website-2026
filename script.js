@@ -1,6 +1,6 @@
 /* ================= COUNTDOWN ================= */
 
-const countdownDate = new Date("Feb 17, 2026 00:00:00").getTime();
+const countdownDate = new Date("Feb 19, 2026 00:17:00").getTime();
 
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
